@@ -32,9 +32,10 @@ class ShowListJadwalUI extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 5.0)],
             gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xFF642B73), Color(0xFFC6426E)],
+              begin: Alignment.topRight,
+//              end: Alignment(0.20, 2.0),
+              end: Alignment.bottomLeft,
+              colors: [Color(0xFF67B26F), Color(0xFF4ca2cd)],
             )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

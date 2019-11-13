@@ -18,22 +18,36 @@ class ShowHeaderUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          data.city,
-          style: styleCityHeader,
-        ),
-        Text(
-          data.address,
-          style: styleAdressHeader,
-        ),
-        Text(
-          getDate(),
-          style: styleTanggalHeader,
-        )
-      ],
+    return Positioned(
+      left: 20.0,
+      bottom: 30.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            data.city,
+            style: styleCityHeader,
+          ),
+          Row(
+            children: <Widget>[
+              Icon(
+                Icons.location_on,
+                size: 15.0,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                data.address,
+                style: styleAdressHeader,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

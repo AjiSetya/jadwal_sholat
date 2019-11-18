@@ -34,14 +34,26 @@ class ListJadwal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        containerWaktu("Subuh", data.items[0].fajr.toUpperCase()),
-        containerWaktu("Dzuhur", data.items[0].dhuhr.toUpperCase()),
-        containerWaktu("Ashar", data.items[0].asr.toUpperCase()),
-        containerWaktu("Maghrib", data.items[0].maghrib.toUpperCase()),
-        containerWaktu("Isya", data.items[0].isha.toUpperCase()),
-      ],
-    );
+    return ListView.builder(
+      padding: EdgeInsets.all(10.0),
+      itemCount: data.items.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              containerWaktu("Subuh", data.items[index].fajr.toUpperCase()),
+              containerWaktu("Dzuhur", data.items[index].dhuhr.toUpperCase()),
+              containerWaktu("Ashar", data.items[index].asr.toUpperCase()),
+              containerWaktu("Maghrib", data.items[index].maghrib.toUpperCase()),
+              containerWaktu("Isya", data.items[index].isha.toUpperCase()),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

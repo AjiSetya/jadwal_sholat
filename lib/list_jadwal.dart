@@ -38,22 +38,17 @@ class ListJadwal extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       itemCount: data.items.length,
       itemBuilder: (BuildContext context, int index) {
-        return Card(
-          child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              containerWaktu("Subuh", data.items[index].fajr.toUpperCase()),
-              containerWaktu("Dzuhur", data.items[index].dhuhr.toUpperCase()),
-              containerWaktu("Ashar", data.items[index].asr.toUpperCase()),
-              containerWaktu("Maghrib", data.items[index].maghrib.toUpperCase()),
-              containerWaktu("Isya", data.items[index].isha.toUpperCase()),
-            ],
-          ),
-        ),
-      );
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          containerWaktu("Subuh", data.items[index].fajr.toUpperCase()),
+          containerWaktu("Dzuhur", data.items[index].dhuhr.toUpperCase()),
+          containerWaktu("Ashar", data.items[index].asr.toUpperCase()),
+          containerWaktu("Maghrib", data.items[index].maghrib.toUpperCase()),
+          containerWaktu("Isya", data.items[index].isha.toUpperCase()),
+        ],
+      ); 
     });
   }
 }

@@ -20,23 +20,24 @@ class MyHomeScreen extends StatefulWidget {
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
   TextEditingController _locationController = TextEditingController();
-
   // membuat request data
-  Future<ResponJadwal> getJadwal({String location = "jonggol"}) async {
+  Future<ResponJadwal> getJadwal({String location}) async {
+    String url = "http://muslimsalat.com/$location.json?key=b387108c00b8355d1ebf13ff0e4cfce5";
     // ngambil json ygn ada di url
-    final response = await http.get(
-        "http://muslimsalat.com/${location}.json?key=b387108c00b8355d1ebf13ff0e4cfce5");
+    final response = await http.get(url);
     // memilah (decode) json dari variable response
     final jsonResponse = json.decode(response.body);
     // masukkan ke dalam class data ResponJadwal
-    return ResponJadwal.fromJsonMap(jsonResponse);
+    return ResponJadwal.fromJson(jsonResponse);
   }
 
   @override
   void initState() {
     // TODO: implement initState
+    if (_locationController.text.isEmpty || _locationController.text == null){
+      _locationController.text = "jonggol";
+    }
     super.initState();
-    getJadwal();
   }
 
   @override
@@ -77,7 +78,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           ),
         ),
         FutureBuilder(
-            future: getJadwal(),
+            future:  getJadwal(location: _locationController.text.toLowerCase().toString()),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return HeaderContent(snapshot.data);
@@ -95,7 +96,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     );
     final body = Expanded(
       child: FutureBuilder(
-          future: getJadwal(),
+          future:  getJadwal(location: _locationController.text.toLowerCase().toString()),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListJadwal(snapshot.data);
@@ -131,13 +132,11 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                   },
                   child: new Text("Batal")),
               new FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context, () {
-                      setState(() {
-                        getJadwal();
+                  onPressed: () => Navigator.pop(context, () {
+                     setState(() {
+                        getJadwal(location: _locationController.text.toLowerCase().toString());
                       });
-                    });
-                  },
+                    }),
                   child: new Text("Ok")),
             ],
             shape: RoundedRectangleBorder(

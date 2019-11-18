@@ -1,32 +1,33 @@
-
 class Items {
+	String dateFor;
+	String fajr;
+	String shurooq;
+	String dhuhr;
+	String asr;
+	String maghrib;
+	String isha;
 
-  String date_for;
-  String fajr;
-  String shurooq;
-  String dhuhr;
-  String asr;
-  String maghrib;
-  String isha;
+	Items({this.dateFor, this.fajr, this.shurooq, this.dhuhr, this.asr, this.maghrib, this.isha});
 
-	Items.fromJsonMap(Map<String, dynamic> map): 
-		date_for = map["date_for"],
-		fajr = map["fajr"],
-		shurooq = map["shurooq"],
-		dhuhr = map["dhuhr"],
-		asr = map["asr"],
-		maghrib = map["maghrib"],
-		isha = map["isha"];
+	Items.fromJson(Map<String, dynamic> json) {
+		dateFor = json['date_for'];
+		fajr = json['fajr'];
+		shurooq = json['shurooq'];
+		dhuhr = json['dhuhr'];
+		asr = json['asr'];
+		maghrib = json['maghrib'];
+		isha = json['isha'];
+	}
 
 	Map<String, dynamic> toJson() {
 		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['date_for'] = date_for;
-		data['fajr'] = fajr;
-		data['shurooq'] = shurooq;
-		data['dhuhr'] = dhuhr;
-		data['asr'] = asr;
-		data['maghrib'] = maghrib;
-		data['isha'] = isha;
+		data['date_for'] = this.dateFor;
+		data['fajr'] = this.fajr;
+		data['shurooq'] = this.shurooq;
+		data['dhuhr'] = this.dhuhr;
+		data['asr'] = this.asr;
+		data['maghrib'] = this.maghrib;
+		data['isha'] = this.isha;
 		return data;
 	}
 }

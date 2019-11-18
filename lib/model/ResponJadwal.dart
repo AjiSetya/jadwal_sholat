@@ -1,87 +1,92 @@
-import 'package:jadwal_sholat/model/today_weather.dart';
-import 'package:jadwal_sholat/model/items.dart';
+import 'dart:core';
 
+import 'items.dart';
+import 'today_weather.dart';
 class ResponJadwal {
-  String title;
-  String query;
-  String foor;
-  int method;
-  String prayer_method_name;
-  String daylight;
-  String timezone;
-  String map_image;
-  String sealevel;
-  Today_weather today_weather;
-  String link;
-  String qibla_direction;
-  String latitude;
-  String longitude;
-  String address;
-  String city;
-  String state;
-  String postal_code;
-  String country;
-  String country_code;
-  List<Items> items;
-  int status_valid;
-  int status_code;
-  String status_description;
+	String title;
+	String query;
+	int method;
+	String prayerMethodName;
+	String daylight;
+	String timezone;
+	String mapImage;
+	String sealevel;
+	TodayWeather todayWeather;
+	String link;
+	String qiblaDirection;
+	String latitude;
+	String longitude;
+	String address;
+	String city;
+	String state;
+	String postalCode;
+	String country;
+	String countryCode;
+	List<Items> items;
+	int statusValid;
+	int statusCode;
+	String statusDescription;
 
-  ResponJadwal.fromJsonMap(Map<String, dynamic> map)
-      : title = map["title"],
-        query = map["query"],
-        foor = map["for"],
-        method = map["method"],
-        prayer_method_name = map["prayer_method_name"],
-        daylight = map["daylight"],
-        timezone = map["timezone"],
-        map_image = map["map_image"],
-        sealevel = map["sealevel"],
-        today_weather = Today_weather.fromJsonMap(map["today_weather"]),
-        link = map["link"],
-        qibla_direction = map["qibla_direction"],
-        latitude = map["latitude"],
-        longitude = map["longitude"],
-        address = map["address"],
-        city = map["city"],
-        state = map["state"],
-        postal_code = map["postal_code"],
-        country = map["country"],
-        country_code = map["country_code"],
-        items =
-            List<Items>.from(map["items"].map((it) => Items.fromJsonMap(it))),
-        status_valid = map["status_valid"],
-        status_code = map["status_code"],
-        status_description = map["status_description"];
+	ResponJadwal({this.title, this.query, this.method, this.prayerMethodName, this.daylight, this.timezone, this.mapImage, this.sealevel, this.todayWeather, this.link, this.qiblaDirection, this.latitude, this.longitude, this.address, this.city, this.state, this.postalCode, this.country, this.countryCode, this.items, this.statusValid, this.statusCode, this.statusDescription});
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = title;
-    data['query'] = query;
-    data['for'] = foor;
-    data['method'] = method;
-    data['prayer_method_name'] = prayer_method_name;
-    data['daylight'] = daylight;
-    data['timezone'] = timezone;
-    data['map_image'] = map_image;
-    data['sealevel'] = sealevel;
-    data['today_weather'] =
-        today_weather == null ? null : today_weather.toJson();
-    data['link'] = link;
-    data['qibla_direction'] = qibla_direction;
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    data['address'] = address;
-    data['city'] = city;
-    data['state'] = state;
-    data['postal_code'] = postal_code;
-    data['country'] = country;
-    data['country_code'] = country_code;
-    data['items'] =
-        items != null ? this.items.map((v) => v.toJson()).toList() : null;
-    data['status_valid'] = status_valid;
-    data['status_code'] = status_code;
-    data['status_description'] = status_description;
-    return data;
-  }
+	ResponJadwal.fromJson(Map<String, dynamic> json) {
+		title = json['title'];
+		query = json['query'];	
+		method = json['method'];
+		prayerMethodName = json['prayer_method_name'];
+		daylight = json['daylight'];
+		timezone = json['timezone'];
+		mapImage = json['map_image'];
+		sealevel = json['sealevel'];
+		todayWeather = json['today_weather'] != null ? new TodayWeather.fromJson(json['today_weather']) : null;
+		link = json['link'];
+		qiblaDirection = json['qibla_direction'];
+		latitude = json['latitude'];
+		longitude = json['longitude'];
+		address = json['address'];
+		city = json['city'];
+		state = json['state'];
+		postalCode = json['postal_code'];
+		country = json['country'];
+		countryCode = json['country_code'];
+		if (json['items'] != null) {
+			items = new List<Items>();
+			json['items'].forEach((v) { items.add(new Items.fromJson(v)); });
+		}
+		statusValid = json['status_valid'];
+		statusCode = json['status_code'];
+		statusDescription = json['status_description'];
+	}
+
+	Map<String, dynamic> toJson() {
+		final Map<String, dynamic> data = new Map<String, dynamic>();
+		data['title'] = this.title;
+		data['query'] = this.query;
+		data['method'] = this.method;
+		data['prayer_method_name'] = this.prayerMethodName;
+		data['daylight'] = this.daylight;
+		data['timezone'] = this.timezone;
+		data['map_image'] = this.mapImage;
+		data['sealevel'] = this.sealevel;
+		if (this.todayWeather != null) {
+      data['today_weather'] = this.todayWeather.toJson();
+    }
+		data['link'] = this.link;
+		data['qibla_direction'] = this.qiblaDirection;
+		data['latitude'] = this.latitude;
+		data['longitude'] = this.longitude;
+		data['address'] = this.address;
+		data['city'] = this.city;
+		data['state'] = this.state;
+		data['postal_code'] = this.postalCode;
+		data['country'] = this.country;
+		data['country_code'] = this.countryCode;
+		if (this.items != null) {
+      data['items'] = this.items.map((v) => v.toJson()).toList();
+    }
+		data['status_valid'] = this.statusValid;
+		data['status_code'] = this.statusCode;
+		data['status_description'] = this.statusDescription;
+		return data;
+	}
 }

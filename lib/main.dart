@@ -20,8 +20,6 @@ class MyHomeScreen extends StatefulWidget {
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
   TextEditingController _locationController = TextEditingController();
-  
-
   // membuat request data
   Future<ResponJadwal> getJadwal({String location}) async {
     String url = "http://muslimsalat.com/$location.json?key=b387108c00b8355d1ebf13ff0e4cfce5";
@@ -41,7 +39,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     }
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {

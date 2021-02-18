@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jadwal_sholat/model/respon_jadwal.dart';
 import 'package:jadwal_sholat/text_style.dart';
-
-import 'model/ResponJadwal.dart';
 
 class HeaderContent extends StatelessWidget {
   ResponJadwal responJadwal;
@@ -16,7 +15,7 @@ class HeaderContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(responJadwal.city, style: styleCityHeader),
+          Text(responJadwal.results.location.city, style: styleCityHeader),
           Row(
             children: <Widget>[
               Icon(
@@ -24,7 +23,8 @@ class HeaderContent extends StatelessWidget {
                 color: Colors.white,
                 size: 20.0,
               ),
-              Text(responJadwal.address, style: styleAdressHeader)
+              Text(responJadwal.results.location.country,
+                  style: styleAdressHeader)
             ],
           )
         ],

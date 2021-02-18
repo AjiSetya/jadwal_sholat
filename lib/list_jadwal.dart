@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jadwal_sholat/model/respon_jadwal.dart';
 import 'package:jadwal_sholat/text_style.dart';
-
-import 'model/ResponJadwal.dart';
 
 class ListJadwal extends StatelessWidget {
   ResponJadwal data;
@@ -35,20 +34,21 @@ class ListJadwal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.all(10.0),
-      itemCount: data.items.length,
-      itemBuilder: (BuildContext context, int index) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          containerWaktu("Subuh", data.items[index].fajr.toUpperCase()),
-          containerWaktu("Dzuhur", data.items[index].dhuhr.toUpperCase()),
-          containerWaktu("Ashar", data.items[index].asr.toUpperCase()),
-          containerWaktu("Maghrib", data.items[index].maghrib.toUpperCase()),
-          containerWaktu("Isya", data.items[index].isha.toUpperCase()),
-        ],
-      ); 
-    });
+        padding: EdgeInsets.all(10.0),
+        itemCount: data.results.datetime.length,
+        itemBuilder: (BuildContext context, int index) {
+          Times waktu = data.results.datetime[0].times;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              containerWaktu("Subuh", waktu.fajr.toUpperCase()),
+              containerWaktu("Dzuhur", waktu.dhuhr.toUpperCase()),
+              containerWaktu("Ashar", waktu.asr.toUpperCase()),
+              containerWaktu("Maghrib", waktu.maghrib.toUpperCase()),
+              containerWaktu("Isya", waktu.isha.toUpperCase()),
+            ],
+          );
+        });
   }
 }

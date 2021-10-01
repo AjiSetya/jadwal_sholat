@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jadwal_sholat/model/respon_jadwal.dart';
 import 'package:jadwal_sholat/text_style.dart';
 
+// ikut hacktober fest
 class HeaderContent extends StatelessWidget {
   ResponJadwal responJadwal;
 
